@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- HTML5 Hello world by kirupa - http://www.kirupa.com/html5/getting_your_feet_wet_html5_pg1.htm -->
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8">
+<title>Hello...</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://c9.io/yingding/searchwidget/workspace/js/lmu-search-intern.js"></script>
+</head>
+
+
+<body>
+<div id="searchParent">
+</div>
+<div id="resultParent">
+</div>
+
+<script type="text/javascript">
+   $(document).ready(function() {
+     //initWidget("searchParent","lmu_search_01", new SolrBackend("") ,function(data) { console.log(data); });  
+     initWidget("searchParent","lmu_search_01", new SolrBackend(""),
+     function(solrResponse) {
+        var searchResultParentId = "resultParent";
+        var searchResultElement = $('#'+searchResultParentId);
+        if (!searchResultElement.length) {
+            $('#'+searchResultParentId).append(solrResponse.getHtml5SearchResultString());
+        } else {
+            // empty first all children
+            $('#'+searchResultParentId).empty();
+            $('#'+searchResultParentId).append(solrResponse.getHtml5SearchResultString());
+        }
+     });    
+    }); 
+</script>
+
+
+    
+</body>
+
+    
+</html>
